@@ -57,21 +57,21 @@ class ArgsParserTest {
 
     @Test
     void shouldThrowMissingArgumentExceptionForInvalidArgumentFormat() {
-        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t", "-o=output.txt"}; // неправильный формат ключа "-t"
+        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t", "-o=output.txt"}; /* неправильный формат ключа "-t" */
         Exception exception = assertThrows(MissingArgumentException.class, () -> new ArgsParser(args));
         assertEquals("Invalid argument: -t", exception.getMessage());
     }
 
     @Test
     void shouldThrowMissingArgumentExceptionForEmptyArgument() {
-        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t=mask", "-o="}; // пустое значение для -o
+        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t=mask", "-o="}; /* пустое значение для -o */
         Exception exception = assertThrows(MissingArgumentException.class, () -> new ArgsParser(args));
         assertEquals("Invalid argument: -o=", exception.getMessage());
     }
 
     @Test
     void shouldThrowMissingArgumentExceptionForMissingEqualsSign() {
-        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t=mask", "-o"}; // пропущен знак "=" для -o
+        String[] args = {"-d=/path/to/dir", "-n=*.txt", "-t=mask", "-o"}; /* пропущен знак "=" для -o */
         Exception exception = assertThrows(MissingArgumentException.class, () -> new ArgsParser(args));
         assertEquals("Invalid argument: -o", exception.getMessage());
     }

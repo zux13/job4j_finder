@@ -16,7 +16,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnFalseWhenDirectoryDoesNotExist() throws InvalidArgumentException, MissingArgumentException {
-        // Передаем несуществующую директорию
+        /* Передаем несуществующую директорию */
         String[] args = {"-d=non_existing_directory", "-n=*.txt", "-t=mask", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -25,7 +25,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnTrueForValidMaskPattern() throws InvalidArgumentException, MissingArgumentException {
-        // Валидная маска
+        /* Валидная маска */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=*.txt", "-t=mask", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -34,7 +34,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnFalseForInvalidMaskPattern() throws InvalidArgumentException, MissingArgumentException {
-        // Невалидная маска (недопустимые символы)
+        /* Невалидная маска (недопустимые символы) */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=*.|txt", "-t=mask", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -43,7 +43,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnTrueForValidRegexPattern() throws InvalidArgumentException, MissingArgumentException {
-        // Валидное регулярное выражение
+        /* Валидное регулярное выражение */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=^.*\\.txt$", "-t=regex", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -52,7 +52,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnFalseForInvalidRegexPattern() throws InvalidArgumentException, MissingArgumentException {
-        // Невалидное регулярное выражение
+        /* Невалидное регулярное выражение */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=[.*\\txt", "-t=regex", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -61,7 +61,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnFalseWhenMaskPatternIsOnlyWildcard() throws InvalidArgumentException, MissingArgumentException {
-        // Маска состоит только из символов * или ?
+        /* Маска состоит только из символов * или ? */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=*", "-t=mask", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -70,7 +70,7 @@ class ValidatorTest {
 
     @Test
     void shouldReturnTrueForValidDirectoryAndOutputFile() throws InvalidArgumentException, MissingArgumentException {
-        // Валидная директория и файл для записи
+        /* Валидная директория и файл для записи */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=*.txt", "-t=mask", "-o=output.txt"};
         ArgsParser parser = new ArgsParser(args);
 
@@ -79,7 +79,7 @@ class ValidatorTest {
 
     @Test
     void shouldThrowInvalidArgumentExceptionForInvalidSearchType() {
-        // Невалидный тип поиска
+        /* Невалидный тип поиска */
         String[] args = {"-d=" + System.getProperty("user.dir"), "-n=*.txt", "-t=invalid_type", "-o=output.txt"};
 
         Exception exception = assertThrows(InvalidArgumentException.class, () -> {
