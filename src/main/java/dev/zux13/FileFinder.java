@@ -59,37 +59,9 @@ public class FileFinder {
 
     private String convertMaskToRegex() {
 
-        StringBuilder regex = new StringBuilder();
+        return pattern.replaceAll("\\.", "[.]")
+                .replaceAll("\\*", ".*")
+                .replaceAll("\\?", ".");
 
-        for (int i = 0; i < pattern.length(); i++) {
-            char currentChar = pattern.charAt(i);
-            switch (currentChar) {
-                case '*':
-                    regex.append(".*");
-                    break;
-                case '?':
-                    regex.append(".");
-                    break;
-                case '.':
-                case '\\':
-                case '^':
-                case '$':
-                case '+':
-                case '{':
-                case '}':
-                case '[':
-                case ']':
-                case '(':
-                case ')':
-                case '|':
-                    regex.append("\\").append(currentChar);
-                    break;
-                default:
-                    regex.append(currentChar);
-                    break;
-            }
-        }
-
-        return regex.toString();
     }
 }
